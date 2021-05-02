@@ -1,3 +1,6 @@
+#Left off here(watch it):
+#https://www.youtube.com/watch?v=THj99FuPJmI
+
 import discord
 from discord.ext import commands
 import random #for 8ball

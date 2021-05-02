@@ -15,4 +15,4 @@ async def on_member_join(member):
 async def on_member_remove(member):
   print(f"{member} has left Sonder :(")
 
-  client.run('ODM3OTY5MTM4OTE5OTMxOTI0.YI0Rkw.3UoV-KuzrCqurcEFPUtzzCaYpHU')
+client.run('ODM3OTY5MTM4OTE5OTMxOTI0.YI0Rkw.3UoV-KuzrCqurcEFPUtzzCaYpHU')

@@ -5,22 +5,29 @@ from discord.ext import commands
 
 intents = discord.Intents(messages = True, guilds = True, reactions = True, members= True, presences = True)
 
-client = commands.Bot(command_prefix = '.', intents = intents, case_insensitive= True)
+vinny = commands.Bot(command_prefix = '.', intents = intents, case_insensitive= True)
 
-@client.event
+@vinny.event
 async def on_ready():
   print("I'm up and running!")
 
-@client.event
+@vinny.event
 async def on_member_join(member):
   print(f"{member} has joined Sonder!")
 
-@client.event
+@vinny.event
 async def on_member_remove(member):
   print(f"{member} has left Sonder :(")
 
-@client.command(name="hello", description="Greet the user!")
+#Custom Commands
+@vinny.command(name="hello", description="Greet the user!")
 async def hello(ctx):
   await ctx.send(f"Hiya {ctx.author.name}, I'm Vinny, now get moving bub.") #f-string to make Vinny say hello
 
-client.run('ODM3OTY5MTM4OTE5OTMxOTI0.YI0Rkw.3UoV-KuzrCqurcEFPUtzzCaYpHU')
+#Auto Responder
+@vinny.event
+async def on_message(message):
+  if "Vinny" in message.content:
+        await message.channel.send("What")
+
+vinny.run('ODM3OTY5MTM4OTE5OTMxOTI0.YI0Rkw.3UoV-KuzrCqurcEFPUtzzCaYpHU')

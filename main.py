@@ -1,5 +1,5 @@
 import discord
-from discord.net import commands
+from discord.ext import commands
 
 client = commands.Bot(command_prefix - '.')
 
@@ -8,7 +8,7 @@ async def on_ready():
   print("I'm up and running!")
 
 @client.event
-async def on_member_join(member):
+async def on_member_join{member}:
   print(f"{member} has joined Sonder!")
 
 @cleint.event

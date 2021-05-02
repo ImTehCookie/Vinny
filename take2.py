@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+import random #for 8ball
 
 intents = discord.Intents(messages = True, guilds = True, reactions = True, members= True, presences = True)
 
@@ -16,5 +17,19 @@ async def on_member_join(member):
 @vinny.event
 async def on_member_remove(member):
   print(f"{member} has left Sonder :(")
+
+@vinny.command()
+async def ping(ctx):
+    await ctx.send(f"Pong! {round(vinny.latency * 1000)}ms")
+
+@vinny.command(aliases=['8ball', 'eightball', 'ateball'])
+async def _8ball(ctx, *, question): #The Asterisks allows for multiple arguements and use it as one
+    responses = ['No', 'Maybe', 'Go Away',' Why Are You Here', 'Alot', 'Of course', "I'd be surprised if not", "Absolutely"]
+    await ctx.send(f"{random.choice(responses)}")
+
+@vinny.command()
+async def clear(ctx, amount=5):
+    await ctx.channel.purge(limit=amount+1)#+1 was used in order to account for the message which executes the command, otherwise all message deletions are underdeleted by 1
+
 
 vinny.run('ODM3OTY5MTM4OTE5OTMxOTI0.YI0Rkw.3UoV-KuzrCqurcEFPUtzzCaYpHU')

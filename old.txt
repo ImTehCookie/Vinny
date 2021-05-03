@@ -1,0 +1,23 @@
+
+---------- Old Ban and Unban Commands ----------
+@vinny.command()
+async def ban(ctx, member : discord.Member, *, reason=None):
+    if reason == None:
+        reason = "No Reason Given."
+    message = f"You have been baned from {ctx.guild.name} for: {reason}"
+    await member.send(message)
+    await member.ban(reason=reason)
+    await ctx.send(f"Banned {member.mention}")
+
+@vinny.command()
+async def unban(ctx, *, member):
+    banned_users = await ctx.guild.bans()
+    member_name, member_discriminator = member.split('#')
+
+    for ban_entry in banned_users:
+        user = ban_entry.user
+
+        if (user.name, user.discriminator) == (member_name, member_discriminator):
+            await ctx.guild.unban(user)
+            await ctx.send(f"Unbanned {user.mention}")
+            return

@@ -1,5 +1,5 @@
 #Left off here(watch it):
-#https://www.youtube.com/watch?v=THj99FuPJmI
+#https://www.youtube.com/watch?v=vQw8cFfZPx0
 
 import discord
 from discord.ext import commands
@@ -56,7 +56,8 @@ async def ban (ctx, member:discord.User=None, *, reason=None):
     message = f"You have been baned from {ctx.guild.name} for: {reason}"
     await member.send(message)
     await ctx.guild.ban(member, reason=reason)
-    await ctx.channel.send(f"{member} was banned for {reason}")
+    embed = discord.Embed(title="User Banned", description = f":white_check_mark: **{member.mention}** has been **Banned**", colour = 0xff6666)
+    return await ctx.send(embed=embed)
 
 #Unban command
 @vinny.command()
@@ -71,7 +72,7 @@ async def unban (ctx, member:discord.User=None):
         user = ban_entry.user
         if member == user:
             await ctx.guild.unban(user)
-            embed = discord.Embed(title="User Unbanned", description = f":white_check_mark: **{user.mention}** has been **Unbanned**", colour = 0x00ff00)
+            embed = discord.Embed(title="User Unbanned", description = f":white_check_mark: **{user.mention}** has been **Unbanned**", colour = 0x66ff66)
             return await ctx.send(embed=embed)
 
 

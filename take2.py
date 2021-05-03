@@ -34,5 +34,15 @@ async def _8ball(ctx, *, question): #The Asterisks allows for multiple arguement
 async def clear(ctx, amount=5):
     await ctx.channel.purge(limit=amount+1)#+1 was used in order to account for the message which executes the command, otherwise all message deletions are underdeleted by 1
 
+@vinny.command()
+async def kick(ctx, member : discord.Member, *, reason=None):
+    await member.kick(reason=reason)
+
+@vinny.command()
+async def ban(ctx, member : discord.Member, *, reason=None):
+    await member.ban(reason=reason)
+
+@vinny.command()
+async def unban(ctx, *, member : discord.member, )
 
 vinny.run('ODM3OTY5MTM4OTE5OTMxOTI0.YI0Rkw.3UoV-KuzrCqurcEFPUtzzCaYpHU')

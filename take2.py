@@ -43,6 +43,7 @@ async def ban(ctx, member : discord.Member, *, reason=None):
     await member.ban(reason=reason)
 
 @vinny.command()
-async def unban(ctx, *, member : discord.member, )
+async def unban(ctx, *, member : discord.member):
+  banned_users = await ctx.build.bans()
 
 vinny.run('ODM3OTY5MTM4OTE5OTMxOTI0.YI0Rkw.3UoV-KuzrCqurcEFPUtzzCaYpHU')

@@ -1,28 +1,41 @@
 #Left off here(watch it):
 #https://www.youtube.com/watch?v=vQw8cFfZPx0
+#repl.it + uptimerobot for 24/7 hosting
+
 
 import discord
 from discord.ext import commands
+from discord.ext import tasks
+from itertools import cycle
 import random #for 8ball
 
 intents = discord.Intents(messages = True, guilds = True, reactions = True, members= True, presences = True)
 
 vinny = commands.Bot(command_prefix = '.', intents = intents, case_insensitive= True)
+statuses = cycle([".help", "'Dashboard Website'", "Hello!", "discord.gg/sonder"])
 
 #Shows when bot runs successfully
 @vinny.event
 async def on_ready():
-  print("I'm up and running!")
+    #Bot status STATIC
+    #await vinny.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(".help"))
+    change_status.start()
+    print("I'm up and running!")
+
+#Loop for changing bot status
+@tasks.loop(seconds=4)
+async def change_status():
+    await vinny.change_presence(activity=discord.Game(next(statuses)))
 
 #Sends message in consol when a member joins
 @vinny.event
 async def on_member_join(member):
-  print(f"{member} has joined Sonder!")
+    print(f"{member} has joined Sonder!")
 
 #Sends message in consol when a member leaves
 @vinny.event
 async def on_member_remove(member):
-  print(f"{member} has left Sonder :(")
+    print(f"{member} has left Sonder :(")
 
 #Command for latency
 @vinny.command()
@@ -74,6 +87,11 @@ async def unban (ctx, member:discord.User=None):
             await ctx.guild.unban(user)
             embed = discord.Embed(title="User Unbanned", description = f":white_check_mark: **{user.mention}** has been **Unbanned**", colour = 0x66ff66)
             return await ctx.send(embed=embed)
+
+
+#Error Checking for Discord.py
+
+
 
 
 #Bot Token

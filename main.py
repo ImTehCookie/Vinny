@@ -4,6 +4,26 @@
 import discord
 from discord.ext import commands
 
+
+#------------------ For 24/7 Uptime ------------------ 
+from flask import Flask
+from threading import Thread
+
+app = Flask('')
+
+@app.route('/')
+def main():
+  return "Your Bot Is Ready"
+
+def run():
+  app.run(host="0.0.0.0", port=8000)
+
+def keep_alive():
+  server = Thread(target=run)
+  server.start()
+#------------------ For 24/7 Uptime ------------------ 
+
+
 intents = discord.Intents(messages = True, guilds = True, reactions = True, members= True, presences = True)
 
 vinny = commands.Bot(command_prefix = '.', intents = intents, case_insensitive= True)

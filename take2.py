@@ -1,13 +1,17 @@
 #Left off here(watch it):
 #https://www.youtube.com/watch?v=vQw8cFfZPx0
-#repl.it + uptimerobot for 24/7 hosting
 
+#Gets Bot Token
+from os import environ
+token = environ.get('vinny_token')
 
 import discord
 from discord.ext import commands
 from discord.ext import tasks
 from itertools import cycle
 import random #for 8ball
+
+
 
 intents = discord.Intents(messages = True, guilds = True, reactions = True, members= True, presences = True)
 
@@ -91,8 +95,5 @@ async def unban (ctx, member:discord.User=None):
 
 #Error Checking for Discord.py
 
-
-
-
-#Bot Token
-vinny.run('ODM3OTY5MTM4OTE5OTMxOTI0.YI0Rkw.3UoV-KuzrCqurcEFPUtzzCaYpHU')
+#Runs the Bot
+vinny.run(token)
